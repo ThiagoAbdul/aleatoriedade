@@ -14,10 +14,10 @@
     <main>
         <section id="insercao">
             <p>Ano de nascimento: <input type="number" name="ano-nascimento" id="ano-nascimento"></p>
-            <p>Sexo: <input type="radio" name="sexo" id="m" onclick=""> Masculino
-                <input type="radio" name="sexo" id="f"> Feminino
+            <p>Sexo: <input type="radio" name="sexo" id="m" value="um homem"> Masculino
+                <input type="radio" name="sexo" id="f" value="uma mulher"> Feminino
             </p>
-            <p><input id="bt1" type="button" value="Verificar" onclick="radio()"></p>
+            <p><input id="bt1" type="button" value="Verificar" onclick="identificar()"></p>
         </section> 
         <section id="resultado">
             <h2>Preencha os dados acima para ver o resultado!</h2>
@@ -33,15 +33,40 @@
 </body>
 <script>
     
-    var resultado = getElement("section#resultado > h2")
+    
 
-    function getSexo(){
+
+    function identificar(){
+        var sexo = getSex()
+        var idade = getAge()
+
+        if (! validateAge(idade)){
+            window.alert("Favor, insira uma data de nascimento válida")
+        }    
         
-    }  
+        else if (sexo == "indefinido"){
+            window.alert("Por favor, selecione seu sexo.")
+        }
+        else {
+            var resultado = getElement("section#resultado > h2")
+            resultado.innerText = `Detectamos ${sexo} de ${idade} anos`
+        }     
+    }
 
+    function getSex(){
+        var radioBoxSexo = document.getElementsByName("sexo")
+        var sexo = "indefinido"
+        radioBoxSexo.forEach(element => {
+            if (element.checked){
+                sexo = element.value
+            }
+        }
+        );
+        return sexo
+    }
     
     
-    function calcularIdade(){
+    function getAge(){
         var inputNum = getElement("input#ano-nascimento")
         var anoNascimento = inputNum.value
         var anoAtual = new Date().getFullYear()
@@ -49,8 +74,17 @@
         return anoAtual - anoNascimento
     }
 
+    function validateAge(age){
+        if (age >= 0 && age < 120){
+            return true
+        }
+        return false
+    }
+
+
     function getElement(element){
         return document.querySelector(element)
     }
+
 </script>
 </html>
