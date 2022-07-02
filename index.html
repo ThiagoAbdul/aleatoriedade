@@ -14,13 +14,13 @@
     <main>
         <section id="insercao">
             <p>Ano de nascimento: <input type="number" name="ano-nascimento" id="ano-nascimento"></p>
-            <p>Sexo: <input type="radio" name="m" id="m"> Masculino
-                <input type="radio" name="f" id="f"> Feminino
+            <p>Sexo: <input type="radio" name="sexo" id="m" onclick=""> Masculino
+                <input type="radio" name="sexo" id="f"> Feminino
             </p>
-            <p><input id="bt1" type="button" value="Verificar"></p>
+            <p><input id="bt1" type="button" value="Verificar" onclick="radio()"></p>
         </section> 
         <section id="resultado">
-            <h2>Detectamos </h2>
+            <h2>Preencha os dados acima para ver o resultado!</h2>
             <picture>
                 <img src="imagens/homem.png" alt="">
             </picture>
@@ -31,4 +31,26 @@
         <p>&copy; CursoemVideo</p>
     </footer>
 </body>
+<script>
+    
+    var resultado = getElement("section#resultado > h2")
+
+    function getSexo(){
+        
+    }  
+
+    
+    
+    function calcularIdade(){
+        var inputNum = getElement("input#ano-nascimento")
+        var anoNascimento = inputNum.value
+        var anoAtual = new Date().getFullYear()
+
+        return anoAtual - anoNascimento
+    }
+
+    function getElement(element){
+        return document.querySelector(element)
+    }
+</script>
 </html>
