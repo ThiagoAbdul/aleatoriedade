@@ -53,6 +53,14 @@ section#resultado h2 {
     margin-top: 24px;
 }
 
+section > picture > img {
+    display: block;
+    margin: auto;
+    padding-bottom: 8px;
+    padding-top: 16px;
+    
+}
+
 input#bt1 {
     padding: 4px;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
